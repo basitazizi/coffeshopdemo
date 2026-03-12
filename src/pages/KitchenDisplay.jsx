@@ -62,22 +62,24 @@ export default function KitchenDisplay({ onBack }) {
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--teal-dark)', fontFamily: 'Lato, sans-serif' }}>
+    <div className="kitchen-wrap" style={{ minHeight: '100vh', background: 'var(--teal-dark)', fontFamily: 'Lato, sans-serif' }}>
       {/* Header */}
-      <div style={{
+      <div className="kitchen-header" style={{
         background: '#0a2a1e',
         borderBottom: '2px solid rgba(212,137,74,0.3)',
-        padding: '20px 48px', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        padding: '20px clamp(16px, 6vw, 48px)',
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        flexWrap: 'wrap', gap: '12px',
       }}>
         <div>
-          <div style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.6rem', color: 'var(--amber)' }}>
+          <div style={{ fontFamily: 'Playfair Display, serif', fontSize: 'clamp(1.25rem, 5vw, 1.6rem)', color: 'var(--amber)' }}>
             Coffee Expresso - <span style={{ fontSize: '1rem', color: 'rgba(245,240,232,0.4)', fontFamily: 'Lato, sans-serif', fontWeight: 300 }}>Kitchen Display</span>
           </div>
           <div style={{ fontSize: '0.78rem', color: 'rgba(245,240,232,0.3)', marginTop: '2px' }}>
             Live updates - {orders.length} active order{orders.length !== 1 ? 's' : ''}
           </div>
         </div>
-        <div style={{ display: 'flex', gap: '12px' }}>
+        <div className="kitchen-actions" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
           <button onClick={load} style={{ padding: '10px 20px', background: 'transparent', color: 'rgba(245,240,232,0.4)', border: '1px solid rgba(245,240,232,0.15)', borderRadius: '8px', cursor: 'pointer', fontSize: '0.82rem', fontFamily: 'Lato, sans-serif' }}>
             Refresh
           </button>
@@ -91,7 +93,7 @@ export default function KitchenDisplay({ onBack }) {
       </div>
 
       {/* Status legend */}
-      <div style={{ padding: '16px 48px', borderBottom: '1px solid rgba(212,137,74,0.1)', display: 'flex', gap: '24px' }}>
+      <div className="kitchen-legend" style={{ padding: '16px clamp(16px, 6vw, 48px)', borderBottom: '1px solid rgba(212,137,74,0.1)', display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
         {Object.entries(STATUS).map(([key, val]) => (
           <div key={key} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: val.dot }} />
@@ -101,7 +103,7 @@ export default function KitchenDisplay({ onBack }) {
       </div>
 
       {/* Orders */}
-      <div style={{ padding: '32px 48px' }}>
+      <div className="kitchen-orders" style={{ padding: '32px clamp(16px, 6vw, 48px)' }}>
         {orders.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '100px 0', color: 'rgba(245,240,232,0.2)' }}>
             <div style={{ fontSize: '4rem', marginBottom: '16px' }}>Coffee</div>
@@ -109,7 +111,7 @@ export default function KitchenDisplay({ onBack }) {
             <p style={{ fontSize: '0.88rem' }}>Customer orders will appear here automatically</p>
           </div>
         ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '20px' }}>
+          <div className="kitchen-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '20px' }}>
             {orders.map((order) => {
               const s = STATUS[order.status] || STATUS['New Order'];
               const items = Array.isArray(order.items) ? order.items : [];
@@ -131,7 +133,7 @@ export default function KitchenDisplay({ onBack }) {
                   <div style={{ background: s.bg, padding: '16px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: `1px solid ${s.border}30` }}>
                     <div>
                       <div style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.7rem', color: 'var(--cream)' }}>#{order.order_num}</div>
-                      <div style={{ fontSize: '0.75rem', color: 'rgba(245,240,232,0.45)', marginTop: '2px', fontWeight: 300 }}>
+                      <div style={{ fontSize: '0.75rem', color: 'rgba(245,240,232,0.45)', marginTop: '2px', fontWeight: 300, wordBreak: 'break-word' }}>
                         {headerLine}
                       </div>
                     </div>
@@ -144,7 +146,7 @@ export default function KitchenDisplay({ onBack }) {
                   {/* Items */}
                   <div style={{ padding: '16px 20px' }}>
                     {items.map((item, i) => (
-                      <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 0', borderBottom: i < items.length - 1 ? '1px solid rgba(212,137,74,0.08)' : 'none' }}>
+                      <div key={i} style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '10px', padding: '10px 0', borderBottom: i < items.length - 1 ? '1px solid rgba(212,137,74,0.08)' : 'none' }}>
                         <div>
                           <div style={{ fontSize: '0.95rem', color: 'var(--cream)', fontWeight: 700 }}>{item.qty}x {item.name}</div>
                           <div style={{ fontSize: '0.75rem', color: 'rgba(245,240,232,0.35)', marginTop: '2px', fontWeight: 300 }}>
@@ -171,7 +173,7 @@ export default function KitchenDisplay({ onBack }) {
                   </div>
 
                   {/* Status buttons */}
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '8px', padding: '0 20px 18px' }}>
+                  <div className="kitchen-status-buttons" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '8px', padding: '0 20px 18px' }}>
                     {Object.entries(STATUS).map(([key, val]) => (
                       <button key={key} onClick={() => setStatus(order.id, key)} style={{
                         padding: '9px 4px', border: 'none', borderRadius: '8px',
@@ -190,7 +192,14 @@ export default function KitchenDisplay({ onBack }) {
         )}
       </div>
 
-      <style>{`@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }`}</style>
+      <style>{`
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+        @media (max-width: 600px) {
+          .kitchen-actions button { padding: 9px 12px !important; font-size: 0.75rem !important; }
+          .kitchen-status-buttons { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+      `}</style>
     </div>
   );
 }
