@@ -18,9 +18,9 @@ export default function Contact() {
       {/* Hero */}
       <div style={{ background: 'var(--teal)', paddingTop: '68px' }}>
         <div style={{ height: '1px', background: 'linear-gradient(to right, transparent, rgba(212,137,74,0.4), transparent)' }} />
-        <div style={{ padding: '72px 80px 60px', textAlign: 'center' }}>
+        <div style={{ padding: 'clamp(44px, 8vw, 72px) clamp(16px, 6vw, 80px) 60px', textAlign: 'center' }}>
           <p style={{ fontFamily: 'Lato, sans-serif', fontWeight: 300, fontSize: '0.78rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--amber)', marginBottom: '12px' }}>Come Visit</p>
-          <h1 style={{ fontFamily: 'Playfair Display, serif', fontSize: '4rem', color: 'var(--cream)' }}>
+          <h1 style={{ fontFamily: 'Playfair Display, serif', fontSize: 'clamp(2.6rem, 8vw, 4rem)', color: 'var(--cream)' }}>
             About <em>Us</em>
           </h1>
           <p style={{ fontFamily: 'Lato, sans-serif', fontWeight: 300, color: 'rgba(245,240,232,0.55)', maxWidth: '400px', margin: '16px auto 0', lineHeight: 1.75 }}>
@@ -31,12 +31,12 @@ export default function Contact() {
       </div>
 
       {/* Content */}
-      <div style={{ background: 'var(--teal)', padding: '80px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', maxWidth: '1100px', margin: '0 auto' }}>
+      <div style={{ background: 'var(--teal)', padding: 'clamp(24px, 6vw, 80px)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'clamp(24px, 6vw, 80px)', maxWidth: '1100px', margin: '0 auto' }}>
 
         {/* Left: Info */}
         <div>
           {/* Big circular photo */}
-          <div style={{ position: 'relative', width: '320px', height: '320px', margin: '0 auto 48px' }}>
+          <div style={{ position: 'relative', width: 'min(320px, 78vw)', height: 'min(320px, 78vw)', margin: '0 auto 48px' }}>
             <div style={{ position: 'absolute', inset: '-16px', borderRadius: '50%', border: '1px solid rgba(245,240,232,0.12)' }} />
             <div style={{ position: 'absolute', top: '-18px', left: '50%', transform: 'translateX(-50%)', width: '8px', height: '8px', borderRadius: '50%', background: 'var(--white)' }} />
             <div style={{ position: 'absolute', bottom: '-18px', left: '50%', transform: 'translateX(-50%)', width: '8px', height: '8px', borderRadius: '50%', background: 'var(--white)' }} />

@@ -72,7 +72,7 @@ export default function Cart() {
         }} />
 
         <div style={{
-          position: 'fixed', top: 0, right: 0, bottom: 0, width: '440px',
+          position: 'fixed', top: 0, right: 0, bottom: 0, width: 'min(440px, 100vw)',
           background: 'var(--teal)', zIndex: 400,
           display: 'flex', flexDirection: 'column',
           boxShadow: '-8px 0 48px rgba(0,0,0,0.4)',

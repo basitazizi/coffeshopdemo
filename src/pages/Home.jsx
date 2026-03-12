@@ -5,6 +5,21 @@ const css = `
   .order-btn:hover { background: var(--amber-dark) !important; transform: scale(1.04); }
   .feature-card:hover { transform: translateY(-6px); background: rgba(212,137,74,0.1) !important; }
   .feature-card:hover .feature-icon { background: var(--amber) !important; color: #fff !important; }
+
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr !important; gap: 28px !important; padding: 0 16px !important; }
+    .hero-left, .hero-right { justify-content: center !important; padding: 0 !important; }
+    .hero-center { padding: 0 !important; min-width: 0 !important; }
+  }
+
+  @media (max-width: 700px) {
+    .stats-bar { flex-wrap: wrap !important; gap: 24px !important; padding: 22px 16px !important; }
+    .features-grid { grid-template-columns: 1fr !important; }
+    .menu-preview-grid { grid-template-columns: 1fr !important; }
+    .site-footer { padding: 40px 16px 28px !important; }
+    .footer-top { flex-direction: column !important; gap: 22px !important; }
+    .footer-bottom { flex-direction: column !important; gap: 10px !important; align-items: flex-start !important; }
+  }
 `;
 
 export default function Home({ onNavigate }) {
@@ -25,12 +40,12 @@ export default function Home({ onNavigate }) {
         {/* Bottom horizontal rule */}
         <div style={{ position: 'absolute', bottom: '90px', left: 0, right: 0, height: '1px', background: 'rgba(245,240,232,0.12)' }} />
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', width: '100%', maxWidth: '1300px', padding: '0 0', gap: '0' }}>
+        <div className="hero-grid" style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', width: '100%', maxWidth: '1300px', padding: '0 clamp(16px, 6vw, 60px)', gap: '0' }}>
 
           {/* Left circular image */}
-          <div className="hero-circle-l" style={{ display: 'flex', justifyContent: 'flex-end', paddingRight: '20px', position: 'relative' }}>
+          <div className="hero-circle-l hero-left" style={{ display: 'flex', justifyContent: 'flex-end', paddingRight: '20px', position: 'relative' }}>
             {/* Decorative outer ring */}
-            <div style={{ position: 'relative', width: '320px', height: '320px' }}>
+            <div style={{ position: 'relative', width: 'min(320px, 78vw)', height: 'min(320px, 78vw)' }}>
               {/* Outer ring decorative */}
               <div style={{
                 position: 'absolute', inset: '-20px',
@@ -57,7 +72,7 @@ export default function Home({ onNavigate }) {
           </div>
 
           {/* Center text */}
-          <div style={{ textAlign: 'center', padding: '0 60px', minWidth: '380px' }}>
+          <div className="hero-center" style={{ textAlign: 'center', padding: '0 60px', maxWidth: '520px', margin: '0 auto' }}>
             <p style={{ fontFamily: 'Lato, sans-serif', fontWeight: 300, fontSize: '1.05rem', color: 'rgba(245,240,232,0.7)', letterSpacing: '0.1em', marginBottom: '12px' }} className="fade-up">
               The Best
             </p>
@@ -105,8 +120,8 @@ export default function Home({ onNavigate }) {
           </div>
 
           {/* Right circular image */}
-          <div className="hero-circle-r" style={{ display: 'flex', justifyContent: 'flex-start', paddingLeft: '20px' }}>
-            <div style={{ position: 'relative', width: '320px', height: '320px' }}>
+          <div className="hero-circle-r hero-right" style={{ display: 'flex', justifyContent: 'flex-start', paddingLeft: '20px' }}>
+            <div style={{ position: 'relative', width: 'min(320px, 78vw)', height: 'min(320px, 78vw)' }}>
               <div style={{ position: 'absolute', inset: '-20px', borderRadius: '50%', border: '1px solid rgba(245,240,232,0.2)' }} />
               <div style={{ position: 'absolute', top: '-22px', left: '50%', transform: 'translateX(-50%)', width: '10px', height: '10px', borderRadius: '50%', background: 'var(--white)' }} />
               <div style={{ position: 'absolute', bottom: '-22px', left: '50%', transform: 'translateX(-50%)', width: '10px', height: '10px', borderRadius: '50%', background: 'var(--white)' }} />
@@ -122,7 +137,7 @@ export default function Home({ onNavigate }) {
       </section>
 
       {/* ─── STATS BAR ─── */}
-      <div style={{ background: 'var(--teal-dark)', padding: '32px 80px', display: 'flex', justifyContent: 'center', gap: '80px', borderTop: '1px solid rgba(212,137,74,0.25)', borderBottom: '1px solid rgba(212,137,74,0.25)' }}>
+      <div className="stats-bar" style={{ background: 'var(--teal-dark)', padding: '32px clamp(16px, 6vw, 80px)', display: 'flex', justifyContent: 'center', gap: 'clamp(22px, 6vw, 80px)', borderTop: '1px solid rgba(212,137,74,0.25)', borderBottom: '1px solid rgba(212,137,74,0.25)' }}>
         {[['12+', 'Origin Blends'], ['⭐ 4.9', 'Google Rating'], ['6 AM', 'We Open'], ['3 Min', 'Avg Wait']].map(([val, label]) => (
           <div key={label} style={{ textAlign: 'center' }}>
             <div style={{ fontFamily: 'Playfair Display, serif', fontSize: '2rem', color: 'var(--amber)' }}>{val}</div>
@@ -132,14 +147,14 @@ export default function Home({ onNavigate }) {
       </div>
 
       {/* ─── FEATURES SECTION ─── */}
-      <section style={{ background: 'var(--teal)', padding: '100px 80px' }}>
+      <section style={{ background: 'var(--teal)', padding: 'clamp(60px, 10vw, 100px) clamp(16px, 6vw, 80px)' }}>
         <div style={{ textAlign: 'center', marginBottom: '60px' }}>
           <p style={{ fontFamily: 'Lato, sans-serif', fontWeight: 300, fontSize: '0.8rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--amber)', marginBottom: '12px' }}>Why Choose Us</p>
           <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '3rem', color: 'var(--cream)', lineHeight: 1.1 }}>
             Crafted with<br /><em>care and passion</em>
           </h2>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '24px', maxWidth: '900px', margin: '0 auto' }}>
+        <div className="features-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '24px', maxWidth: '900px', margin: '0 auto' }}>
           {[
             { icon: '🌱', title: 'Single Origin', desc: 'Every bean sourced directly from small farms we trust and visit personally.' },
             { icon: '🔥', title: 'Freshly Roasted', desc: 'Roasted in-house weekly. You taste the difference in every single cup.' },
@@ -165,13 +180,13 @@ export default function Home({ onNavigate }) {
       </section>
 
       {/* ─── MENU PREVIEW ─── */}
-      <section style={{ background: 'var(--teal-dark)', padding: '100px 80px', position: 'relative' }}>
+      <section style={{ background: 'var(--teal-dark)', padding: 'clamp(60px, 10vw, 100px) clamp(16px, 6vw, 80px)', position: 'relative' }}>
         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(to right, transparent, var(--amber), transparent)' }} />
         <div style={{ textAlign: 'center', marginBottom: '60px' }}>
           <p style={{ fontFamily: 'Lato, sans-serif', fontWeight: 300, fontSize: '0.8rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--amber)', marginBottom: '12px' }}>What We Serve</p>
           <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '3rem', color: 'var(--cream)' }}>Our Signature Menu</h2>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '32px', maxWidth: '1100px', margin: '0 auto 48px' }}>
+        <div className="menu-preview-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '32px', maxWidth: '1100px', margin: '0 auto 48px' }}>
           {[
             { img: 'https://images.unsplash.com/photo-1534778101976-62847782c213?w=600&h=500&fit=crop&q=85', cat: 'Hot Coffee', label: 'Cappuccino', price: 'from $4.50' },
             { img: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=600&h=500&fit=crop&q=85', cat: 'Cold Coffee', label: 'Cold Brew', price: 'from $4.75' },
@@ -207,8 +222,8 @@ export default function Home({ onNavigate }) {
       </section>
 
       {/* FOOTER */}
-      <footer style={{ background: 'var(--teal-dark)', padding: '48px 80px 32px', borderTop: '1px solid rgba(212,137,74,0.2)' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '40px' }}>
+      <footer className="site-footer" style={{ background: 'var(--teal-dark)', padding: '48px clamp(16px, 6vw, 80px) 32px', borderTop: '1px solid rgba(212,137,74,0.2)' }}>
+        <div className="footer-top" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '40px', gap: '24px', flexWrap: 'wrap' }}>
           <div>
             <div style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.6rem', color: 'var(--amber)', marginBottom: '8px' }}>Coffee Expresso</div>
             <div style={{ fontFamily: 'Lato, sans-serif', fontWeight: 300, fontSize: '0.88rem', color: 'rgba(245,240,232,0.45)', lineHeight: 1.8 }}>
@@ -216,12 +231,12 @@ export default function Home({ onNavigate }) {
               (619) 555-0199 · hello@coffeeexpresso.com
             </div>
           </div>
-          <div style={{ fontFamily: 'Lato, sans-serif', fontWeight: 300, fontSize: '0.88rem', color: 'rgba(245,240,232,0.45)', lineHeight: 1.8, textAlign: 'right' }}>
+          <div style={{ fontFamily: 'Lato, sans-serif', fontWeight: 300, fontSize: '0.88rem', color: 'rgba(245,240,232,0.45)', lineHeight: 1.8, textAlign: 'left' }}>
             Mon – Fri: 6:00 AM – 8:00 PM<br />
             Sat – Sun: 7:00 AM – 9:00 PM
           </div>
         </div>
-        <div style={{ borderTop: '1px solid rgba(212,137,74,0.15)', paddingTop: '24px', display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: 'rgba(245,240,232,0.3)', fontFamily: 'Lato, sans-serif' }}>
+        <div className="footer-bottom" style={{ borderTop: '1px solid rgba(212,137,74,0.15)', paddingTop: '24px', display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: 'rgba(245,240,232,0.3)', fontFamily: 'Lato, sans-serif' }}>
           <span>© 2026 Coffee Expresso. All rights reserved.</span>
           <span>Staff: <span style={{ cursor: 'pointer', textDecoration: 'underline', color: 'rgba(212,137,74,0.4)' }} onClick={() => window._navigateKitchen && window._navigateKitchen()}>Kitchen Display</span></span>
         </div>

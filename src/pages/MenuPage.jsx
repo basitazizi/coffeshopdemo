@@ -10,6 +10,26 @@ const css = `
   .cat-tab { transition: all 0.2s; }
   .cat-tab:hover { color: var(--amber) !important; border-color: var(--amber) !important; }
   .add-btn:hover { background: var(--amber) !important; color: #fff !important; border-color: var(--amber) !important; }
+
+  @media (max-width: 700px) {
+    .menu-hero-pad { padding: 44px 16px 36px !important; }
+    .menu-tabs { justify-content: flex-start !important; padding: 0 8px !important; overflow-x: auto !important; }
+    .menu-tabs::-webkit-scrollbar { display: none; }
+    .cat-tab { padding: 14px 16px !important; font-size: 0.72rem !important; letter-spacing: 0.1em !important; }
+    .cat-thumb { width: 40px !important; height: 40px !important; }
+    .menu-header { padding: 28px 16px 22px !important; flex-wrap: wrap !important; }
+    .menu-grid { padding: 0 16px 56px !important; grid-template-columns: 1fr !important; max-width: 100% !important; }
+    .menu-bottom-line { margin: 0 16px !important; }
+  }
+
+  @media (min-width: 701px) and (max-width: 1024px) {
+    .menu-hero-pad { padding: 56px 32px 46px !important; }
+    .menu-tabs { padding: 0 24px !important; }
+    .cat-tab { padding: 18px 26px !important; }
+    .menu-header { padding: 40px 32px 28px !important; }
+    .menu-grid { padding: 0 32px 72px !important; grid-template-columns: repeat(2, 1fr) !important; max-width: 1200px !important; }
+    .menu-bottom-line { margin: 0 32px !important; }
+  }
 `;
 
 const catImages = {
@@ -35,7 +55,7 @@ export default function MenuPage() {
       }}>
         {/* Decorative horizontal lines */}
         <div style={{ height: '1px', background: 'linear-gradient(to right, transparent, rgba(212,137,74,0.4), transparent)' }} />
-        <div style={{ padding: '64px 80px 52px', textAlign: 'center', position: 'relative' }}>
+        <div className="menu-hero-pad" style={{ padding: '64px clamp(16px, 6vw, 80px) 52px', textAlign: 'center', position: 'relative' }}>
           <p style={{ fontFamily: 'Lato, sans-serif', fontWeight: 300, fontSize: '0.78rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--amber)', marginBottom: '12px' }}>
             Fresh Made Daily
           </p>
@@ -50,12 +70,12 @@ export default function MenuPage() {
       </div>
 
       {/* Category Tabs */}
-      <div style={{
+      <div className="menu-tabs" style={{
         position: 'sticky', top: '68px', zIndex: 100,
         background: 'var(--teal-dark)',
         borderBottom: '1px solid rgba(212,137,74,0.2)',
         display: 'flex', justifyContent: 'center', gap: '0',
-        padding: '0 80px',
+        padding: '0 clamp(12px, 6vw, 80px)',
       }}>
         {categories.map(cat => (
           <button key={cat.id} className="cat-tab" onClick={() => setActiveCat(cat.id)} style={{
@@ -70,7 +90,7 @@ export default function MenuPage() {
             display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px',
           }}>
             {/* Small thumbnail */}
-            <div style={{
+            <div className="cat-thumb" style={{
               width: '48px', height: '48px', borderRadius: '50%', overflow: 'hidden',
               border: `2px solid ${activeCat === cat.id ? 'var(--amber)' : 'rgba(212,137,74,0.2)'}`,
               transition: 'border-color 0.2s',
@@ -83,7 +103,7 @@ export default function MenuPage() {
       </div>
 
       {/* Section Header */}
-      <div style={{ background: 'var(--teal)', padding: '48px 80px 32px', display: 'flex', alignItems: 'center', gap: '20px' }}>
+      <div className="menu-header" style={{ background: 'var(--teal)', padding: '48px clamp(16px, 6vw, 80px) 32px', display: 'flex', alignItems: 'center', gap: '20px' }}>
         <div style={{ width: '56px', height: '56px', borderRadius: '50%', overflow: 'hidden', border: '2px solid rgba(212,137,74,0.5)', flexShrink: 0 }}>
           <img src={catImages[activeCat]} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         </div>
@@ -96,9 +116,9 @@ export default function MenuPage() {
       </div>
 
       {/* Items Grid — 3 per row */}
-      <div style={{
+      <div className="menu-grid" style={{
         background: 'var(--teal)',
-        padding: '0 80px 80px',
+        padding: '0 clamp(16px, 6vw, 80px) 80px',
         display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '28px',
         maxWidth: '1200px', margin: '0 auto',
       }}>
@@ -151,7 +171,7 @@ export default function MenuPage() {
       </div>
 
       {/* Bottom decorative line */}
-      <div style={{ height: '1px', background: 'linear-gradient(to right, transparent, rgba(212,137,74,0.3), transparent)', margin: '0 80px' }} />
+      <div className="menu-bottom-line" style={{ height: '1px', background: 'linear-gradient(to right, transparent, rgba(212,137,74,0.3), transparent)', margin: '0 clamp(16px, 6vw, 80px)' }} />
 
       {selectedItem && <ItemModal item={selectedItem} onClose={() => setSelectedItem(null)} />}
     </>

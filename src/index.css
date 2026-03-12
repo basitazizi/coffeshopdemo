@@ -22,6 +22,7 @@ body {
   background: var(--cream);
   color: var(--white);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4 {
@@ -62,3 +63,26 @@ button, input, textarea, select {
 .fade-up-2 { animation: fadeUp 0.8s 0.15s ease both; }
 .fade-up-3 { animation: fadeUp 0.8s 0.3s ease both; }
 .fade-up-4 { animation: fadeUp 0.8s 0.45s ease both; }
+
+/* Responsive helpers (keeps inline-style heavy components usable on mobile) */
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 clamp(12px, 5vw, 60px);
+  gap: 12px;
+}
+
+@media (max-width: 720px) {
+  .nav-social { display: none !important; }
+  .nav-links { gap: 18px !important; }
+  .nav-order-btn { padding: 10px 14px !important; }
+  .nav-order-text { display: none !important; }
+}
+
+@media (max-width: 420px) {
+  .nav-links { gap: 12px !important; }
+}

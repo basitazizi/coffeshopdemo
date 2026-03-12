@@ -12,12 +12,9 @@ export default function Navbar({ page, onNavigate }) {
       {/* Top decorative line */}
       <div style={{ height: '3px', background: 'linear-gradient(to right, var(--teal-dark), var(--amber), var(--teal-dark))' }} />
 
-      <div style={{
-        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        padding: '0 60px', height: '68px', maxWidth: '1400px', margin: '0 auto',
-      }}>
+      <div className="nav-inner">
         {/* Social icons left */}
-        <div style={{ display: 'flex', gap: '14px', alignItems: 'center' }}>
+        <div className="nav-social" style={{ display: 'flex', gap: '14px', alignItems: 'center' }}>
           {['f', 'in', 'w'].map((s, i) => (
             <div key={i} style={{
               width: '32px', height: '32px', borderRadius: '50%',
@@ -34,12 +31,12 @@ export default function Navbar({ page, onNavigate }) {
         </div>
 
         {/* Nav links center */}
-        <div style={{ display: 'flex', gap: '48px', alignItems: 'center' }}>
+        <div className="nav-links" style={{ display: 'flex', gap: 'clamp(14px, 6vw, 48px)', alignItems: 'center' }}>
           {['home', 'menu', 'contact'].map(l => (
             <button key={l} onClick={() => onNavigate(l)} style={{
               background: 'none', border: 'none',
               fontFamily: 'Lato, sans-serif', fontWeight: 700,
-              fontSize: '0.88rem', letterSpacing: '0.12em',
+              fontSize: 'clamp(0.74rem, 2.8vw, 0.88rem)', letterSpacing: '0.12em',
               textTransform: 'capitalize',
               color: page === l ? 'var(--amber)' : 'var(--white)',
               cursor: 'pointer', padding: '4px 0',
@@ -55,7 +52,7 @@ export default function Navbar({ page, onNavigate }) {
         </div>
 
         {/* Cart right */}
-        <button onClick={() => setCartOpen(true)} style={{
+        <button className="nav-order-btn" onClick={() => setCartOpen(true)} style={{
           display: 'flex', alignItems: 'center', gap: '10px',
           padding: '10px 24px', border: '1.5px solid var(--amber)',
           borderRadius: '999px', background: 'transparent',
@@ -72,7 +69,7 @@ export default function Navbar({ page, onNavigate }) {
             <line x1="3" y1="6" x2="21" y2="6"/>
             <path d="M16 10a4 4 0 01-8 0"/>
           </svg>
-          Order
+          <span className="nav-order-text">Order</span>
           {itemCount > 0 && (
             <span style={{
               background: 'var(--amber)', color: '#fff',
